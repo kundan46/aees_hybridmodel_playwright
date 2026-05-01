@@ -1,0 +1,119 @@
+name: Playwright CI — Enterprise Framework
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'qa'
+        type: choice
+        options: [dev, qa, prod]
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ── Lint & Type-check (fast gate) ────────────────────────
+  typecheck:
+    name: TypeScript Type-Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript compile check
+        run: npx tsc --noEmit
+
+  # ── Sharded parallel test execution ──────────────────────
+  test:
+    name: Playwright Tests (Shard ${{ matrix.shard }})
+    needs: typecheck
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ['1/4', '2/4', '3/4', '4/4']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Run tests (shard ${{ matrix.shard }})
+        run: npx playwright test --shard=${{ matrix.shard }}
+        env:
+          CI: true
+          ENV:            ${{ github.event.inputs.environment || 'qa' }}
+          BASE_URL:       ${{ secrets.BASE_URL }}
+          API_BASE_URL:   ${{ secrets.API_BASE_URL }}
+          ADMIN_USER:     ${{ secrets.ADMIN_USER }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-shard-${{ strategy.job-index }}
+          path: playwright-report/
+          retention-days: 14
+
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results-shard-${{ strategy.job-index }}
+          path: allure-results/
+          retention-days: 14
+
+  # ── Merge and publish Allure report ──────────────────────
+  allure-report:
+    name: Generate & Publish Allure Report
+    needs: test
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all Allure result artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: allure-results-shard-*
+          merge-multiple: true
+          path: allure-results/
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@v1.7
+        with:
+          allure_results: allure-results
+          allure_report:  allure-report
+          gh_pages:       gh-pages
+          allure_history:  allure-history
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

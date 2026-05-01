@@ -1,0 +1,582 @@
+{
+  "config": {
+    "configFile": "/home/kundan/playwright_with_typescript/playwright.config.ts",
+    "rootDir": "/home/kundan/playwright_with_typescript/src/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/kundan/playwright_with_typescript/reports/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/kundan/playwright_with_typescript/src/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/results.json"
+        }
+      ],
+      [
+        "/home/kundan/playwright_with_typescript/node_modules/allure-playwright/dist/cjs/index.js",
+        {
+          "outputFolder": "allure-results",
+          "detail": true,
+          "suiteTitle": false
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "aees/application.spec.ts",
+      "file": "aees/application.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "AEES Application Process @aees @application",
+          "file": "aees/application.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should complete the full application journey",
+              "ok": false,
+              "tags": [
+                "aees",
+                "application"
+              ],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 23364,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\n    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\n    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\n    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9",
+                        "location": {
+                          "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                          "column": 37,
+                          "line": 400
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                            "column": 37,
+                            "line": 400
+                          },
+                          "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n\n\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m\n\u001b[2m    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\u001b[22m\n\u001b[2m    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\u001b[22m\n\u001b[2m    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\u001b[22m\n\u001b[2m    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\u001b[22m\n\u001b[2m    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[14:41:33] \u001b[32MINFO\u001b[39M: \u001b[32m[Navigation] → https://aees.onlineregistrationforms.com/\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:33] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesLogin] Logging in as bug92@gmail.com\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:34] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesDashboard] Navigating to Dashboard\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:34] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesDashboard] Starting or Viewing Application\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:36] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesInstructions] Accepting instructions if available\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:36] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesInstructions] Instructions already accepted or not present\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:36] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesPostSelection] Selecting post: LIBRARIAN\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:38] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEligibility] Filling eligibility details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:40] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesPersonalDetails] Filling personal details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:40] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEducation] Filling education details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:40] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEducation] Selecting degree: Bachelor's Degree in Library Science from a recognized University with at least 50% marks.\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:40] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEducation] Dropdown not visible, skipping or already filled.\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:40] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesOccupational] Handling occupational details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:40] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesOccupational] Occupational form not visible — likely already filled. Skipping.\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Photo path: /home/kundan/playwright_with_typescript/test-photo.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Signature path: /home/kundan/playwright_with_typescript/test-signature.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Caste cert path: test-caste-certificate.pdf\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Uploading photo: /home/kundan/playwright_with_typescript/test-photo.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Photo upload trigger not visible — may already be uploaded\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Uploading signature: /home/kundan/playwright_with_typescript/test-signature.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Signature upload trigger not visible — may already be uploaded\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Uploading caste certificate: /home/kundan/playwright_with_typescript/test-caste-certificate.pdf\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[33MWARN\u001b[39M: \u001b[33m[Upload] Caste certificate upload section not found\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Filling caste certificate number: 123456789012\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[33MWARN\u001b[39M: \u001b[33m[Upload] Caste certificate number field not found\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Filling caste issue date: 01-01-2025\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Converted date format: 01-01-2025 → 01/01/2025\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:43] \u001b[33MWARN\u001b[39M: \u001b[33m[Upload] Caste issue date field not found\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:45] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Clicking Save & Continue\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Go to Dashboard",
+                          "duration": 393
+                        },
+                        {
+                          "title": "Start or View Application",
+                          "duration": 2024
+                        },
+                        {
+                          "title": "Accept Instructions",
+                          "duration": 3
+                        },
+                        {
+                          "title": "Select Post: LIBRARIAN",
+                          "duration": 2003
+                        },
+                        {
+                          "title": "Fill Eligibility",
+                          "duration": 2006
+                        },
+                        {
+                          "title": "Fill Personal Details",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Fill Education Details",
+                          "duration": 2
+                        },
+                        {
+                          "title": "Fill Occupational Details",
+                          "duration": 2
+                        },
+                        {
+                          "title": "Upload documents",
+                          "duration": 16048,
+                          "error": {
+                            "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n",
+                            "stack": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\n    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\n    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\n    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9",
+                            "location": {
+                              "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                              "column": 37,
+                              "line": 400
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m"
+                          },
+                          "steps": [
+                            {
+                              "title": "Upload Photo",
+                              "duration": 5
+                            },
+                            {
+                              "title": "Upload Signature",
+                              "duration": 4
+                            },
+                            {
+                              "title": "Upload Caste Certificate",
+                              "duration": 7
+                            },
+                            {
+                              "title": "Fill Caste Certificate Number",
+                              "duration": 7
+                            },
+                            {
+                              "title": "Fill Caste Issue Date",
+                              "duration": 7
+                            },
+                            {
+                              "title": "Click Save & Continue",
+                              "duration": 11008,
+                              "error": {
+                                "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n",
+                                "stack": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\n    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\n    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\n    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9",
+                                "location": {
+                                  "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                                  "column": 37,
+                                  "line": 400
+                                },
+                                "snippet": "\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "startTime": "2026-05-01T09:11:33.237Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                        "column": 37,
+                        "line": 400
+                      }
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 23782,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\n    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\n    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\n    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9",
+                        "location": {
+                          "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                          "column": 37,
+                          "line": 400
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                            "column": 37,
+                            "line": 400
+                          },
+                          "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n\n\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m\n\u001b[2m    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\u001b[22m\n\u001b[2m    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\u001b[22m\n\u001b[2m    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\u001b[22m\n\u001b[2m    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\u001b[22m\n\u001b[2m    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[14:41:57] \u001b[32MINFO\u001b[39M: \u001b[32m[Navigation] → https://aees.onlineregistrationforms.com/\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:58] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesLogin] Logging in as bug92@gmail.com\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:58] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesDashboard] Navigating to Dashboard\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:41:58] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesDashboard] Starting or Viewing Application\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:00] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesInstructions] Accepting instructions if available\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:00] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesInstructions] Instructions already accepted or not present\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:00] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesPostSelection] Selecting post: LIBRARIAN\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:02] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEligibility] Filling eligibility details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:04] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesPersonalDetails] Filling personal details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:04] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEducation] Filling education details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:04] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEducation] Selecting degree: Bachelor's Degree in Library Science from a recognized University with at least 50% marks.\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:04] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesEducation] Dropdown not visible, skipping or already filled.\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:04] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesOccupational] Handling occupational details\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:04] \u001b[32MINFO\u001b[39M: \u001b[32m[AeesOccupational] Occupational form not visible — likely already filled. Skipping.\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Photo path: /home/kundan/playwright_with_typescript/test-photo.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Signature path: /home/kundan/playwright_with_typescript/test-signature.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Caste cert path: test-caste-certificate.pdf\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Uploading photo: /home/kundan/playwright_with_typescript/test-photo.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Photo upload trigger not visible — may already be uploaded\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Uploading signature: /home/kundan/playwright_with_typescript/test-signature.jpg\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Signature upload trigger not visible — may already be uploaded\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Uploading caste certificate: /home/kundan/playwright_with_typescript/test-caste-certificate.pdf\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[33MWARN\u001b[39M: \u001b[33m[Upload] Caste certificate upload section not found\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Filling caste certificate number: 123456789012\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[33MWARN\u001b[39M: \u001b[33m[Upload] Caste certificate number field not found\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Filling caste issue date: 01-01-2025\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Converted date format: 01-01-2025 → 01/01/2025\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:07] \u001b[33MWARN\u001b[39M: \u001b[33m[Upload] Caste issue date field not found\u001b[39m\n"
+                        },
+                        {
+                          "text": "[14:42:10] \u001b[32MINFO\u001b[39M: \u001b[32m[Upload] Clicking Save & Continue\u001b[39m\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "steps": [
+                        {
+                          "title": "Go to Dashboard",
+                          "duration": 392
+                        },
+                        {
+                          "title": "Start or View Application",
+                          "duration": 2042
+                        },
+                        {
+                          "title": "Accept Instructions",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Select Post: LIBRARIAN",
+                          "duration": 2012
+                        },
+                        {
+                          "title": "Fill Eligibility",
+                          "duration": 2008
+                        },
+                        {
+                          "title": "Fill Personal Details",
+                          "duration": 6
+                        },
+                        {
+                          "title": "Fill Education Details",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Fill Occupational Details",
+                          "duration": 4
+                        },
+                        {
+                          "title": "Upload documents",
+                          "duration": 16111,
+                          "error": {
+                            "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n",
+                            "stack": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\n    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\n    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\n    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9",
+                            "location": {
+                              "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                              "column": 37,
+                              "line": 400
+                            },
+                            "snippet": "\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m"
+                          },
+                          "steps": [
+                            {
+                              "title": "Upload Photo",
+                              "duration": 8
+                            },
+                            {
+                              "title": "Upload Signature",
+                              "duration": 9
+                            },
+                            {
+                              "title": "Upload Caste Certificate",
+                              "duration": 11
+                            },
+                            {
+                              "title": "Fill Caste Certificate Number",
+                              "duration": 17
+                            },
+                            {
+                              "title": "Fill Caste Issue Date",
+                              "duration": 21
+                            },
+                            {
+                              "title": "Click Save & Continue",
+                              "duration": 11018,
+                              "error": {
+                                "message": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n",
+                                "stack": "TimeoutError: locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /save & continue/i }) to be visible\u001b[22m\n\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:400:37\n    at AeesUploadPage.clickSaveAndContinue (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:393:5)\n    at /home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:69:7\n    at AeesUploadPage.uploadDocuments (/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts:30:5)\n    at /home/kundan/playwright_with_typescript/src/tests/aees/application.spec.ts:51:9",
+                                "location": {
+                                  "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                                  "column": 37,
+                                  "line": 400
+                                },
+                                "snippet": "\u001b[90m   at \u001b[39m../pages/aees/aees.upload.page.ts:400\n\n\u001b[0m \u001b[90m 398 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 399 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 400 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msaveAndContinueBtn\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m\u001b[33m,\u001b[39m timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 401 |\u001b[39m\n \u001b[90m 402 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[33mPromise\u001b[39m\u001b[33m.\u001b[39mall([\n \u001b[90m 403 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m {})\u001b[33m,\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "startTime": "2026-05-01T09:11:57.462Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/kundan/playwright_with_typescript/reports/test-results/aees-application-AEES-Appl-d8ad7-he-full-application-journey-chromium-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/kundan/playwright_with_typescript/src/pages/aees/aees.upload.page.ts",
+                        "column": 37,
+                        "line": 400
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e9038e2bd3649d61182f-d929b2c9ec737f0792d3",
+              "file": "aees/application.spec.ts",
+              "line": 14,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-01T09:11:32.665Z",
+    "duration": 49102.324,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

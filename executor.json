@@ -1,0 +1,10 @@
+{
+  "name": "Kundan Kumar QA Engineer",
+  "type": "local",
+  "url": "https://github.com/kundan46",
+  "buildOrder": 1,
+  "buildName": "AEES Execution",
+  "buildUrl": "https:github.com/kundan46/playwright_with_typescript",
+  "reportName": "Playwright Automation Report",
+  "reportUrl": "http://127.0.0.1:33645/"
+}

@@ -1,0 +1,18 @@
+node_modules/
+dist/
+allure-results/
+allure-report/
+playwright-report/
+reports/test-results/
+reports/screenshots/
+.env
+.env.dev
+.env.prod
+*.log
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
