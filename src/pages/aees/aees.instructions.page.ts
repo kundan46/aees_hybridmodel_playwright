@@ -15,9 +15,23 @@ export class AeesInstructionsPage extends BasePage {
   async acceptInstructions(): Promise<void> {
     await test.step('Accept Instructions', async () => {
       logger.info('[AeesInstructions] Accepting instructions if available');
-      if (await this.instructionCheckbox.count() > 0) {
+
+      // Wait for the page to stabilize before checking for elements
+      await this.page.waitForLoadState('networkidle');
+      await this.page.waitForTimeout(2000);
+
+      // Re-check after page stabilizes
+      const checkboxCount = await this.instructionCheckbox.count();
+      if (checkboxCount > 0) {
+        await this.instructionCheckbox.last().waitFor({ state: 'visible', timeout: 10000 });
         await this.instructionCheckbox.last().check();
+        await this.continueBtn.waitFor({ state: 'visible', timeout: 10000 });
         await this.continueBtn.click();
+
+        // Wait for next step to load
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(1000);
+        logger.info('[AeesInstructions] Instructions accepted');
       } else {
         logger.info('[AeesInstructions] Instructions already accepted or not present');
       }

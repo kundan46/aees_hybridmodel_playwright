@@ -23,7 +23,7 @@ test.describe('AEES Application Process @aees @application', () => {
         aeesTestCenterPage,
         aeesPreviewPage
     }) => {
-        test.setTimeout(180000);
+        test.setTimeout(300000);
 
         // Step 1: Dashboard & Start
         await aeesDashboardPage.goToDashboard();

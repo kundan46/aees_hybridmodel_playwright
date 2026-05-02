@@ -74,12 +74,15 @@ export class AeesEducationPage extends BasePage {
     await test.step('Fill Education Details', async () => {
       logger.info('[AeesEducation] Filling education details');
 
+      // Wait for the page to stabilize
+      await this.page.waitForLoadState('networkidle');
+
       const targetDegree = data.degree || 'DEGREE GRADUATION';
       logger.info(`[AeesEducation] Selecting degree: ${targetDegree}`);
 
       // 1. Wait for the dropdown and select the specific degree
       if (await this.educationDetailsDropdown.first().isVisible()) {
-        await this.educationDetailsDropdown.first().waitFor({ state: "visible", timeout: 5000 });
+        await this.educationDetailsDropdown.first().waitFor({ state: "visible", timeout: 10000 });
         await this.educationDetailsDropdown.selectOption({ label: targetDegree });
       } else {
         logger.info('[AeesEducation] Dropdown not visible, skipping or already filled.');
@@ -87,7 +90,7 @@ export class AeesEducationPage extends BasePage {
       }
 
       // 2. Wait for the form to expand (AEEES form sometimes takes a second to load the sub-fields)
-      await this.page.waitForTimeout(1000);
+      await this.page.waitForTimeout(2000);
 
       // 3. Fill the sub-fields if they are visible
       if (await this.educationHeader.isVisible().catch(() => false)) {
@@ -121,6 +124,11 @@ export class AeesEducationPage extends BasePage {
 
         logger.info('[AeesEducation] Submitting education details');
         await this.saveAndContinueBtn.click();
+
+        // Wait for next step to load
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(2000);
+        logger.info('[AeesEducation] Education details saved');
       } else {
         logger.error('[AeesEducation] Education details form section did not appear after selection!');
         throw new Error('Education details form not visible');
@@ -134,48 +142,56 @@ export class AeesEducationPage extends BasePage {
   async upload10thCertificate(filePath: string) {
     if (await this.uploadTrigger10th.isVisible()) {
       await this.uploadFile(this.uploadTrigger10th, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async upload12thCertificate(filePath: string) {
     if (await this.uploadTrigger12th.isVisible()) {
       await this.uploadFile(this.uploadTrigger12th, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async uploadGraduationMarksheets(filePath: string) {
     if (await this.uploadTriggerGraduation.isVisible()) {
       await this.uploadFile(this.uploadTriggerGraduation, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async uploadDegreeCertificate(filePath: string) {
     if (await this.uploadTriggerDegree.isVisible()) {
       await this.uploadFile(this.uploadTriggerDegree, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async uploadDeledCertificate(filePath: string) {
     if (await this.uploadTriggerDeled.isVisible()) {
       await this.uploadFile(this.uploadTriggerDeled, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async uploadPostGraduationMarksheets(filePath: string) {
     if (await this.uploadTriggerPostGraduation.isVisible()) {
       await this.uploadFile(this.uploadTriggerPostGraduation, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async uploadPgDegreeCertificate(filePath: string) {
     if (await this.uploadTriggerPG.isVisible()) {
       await this.uploadFile(this.uploadTriggerPG, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 
   async uploadOtherEducationDoc(filePath: string) {
     if (await this.uploadTriggerOther.isVisible()) {
       await this.uploadFile(this.uploadTriggerOther, filePath);
+      await this.page.waitForTimeout(1000);
     }
   }
 

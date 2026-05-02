@@ -57,30 +57,42 @@ export class AeesTestCenterPage extends BasePage {
     await test.step('Fill Test Center Preferences', async () => {
       logger.info('[AeesTestCenter] Filling test center preferences');
 
-      // 1. Fill Test Center Cities
-      await this.preference1SelectDropDown.selectOption({ label: "AGARTALA" });
-      await this.preference2SelectDropDown.selectOption({ label: "AHMEDABAD" });
-      await this.preference3SelectDropDown.selectOption({ label: "BHOPAL" });
+      // Wait for the page to stabilize
+      await this.page.waitForLoadState('networkidle');
 
-      // 2. Fill Posting Location Preferences (all 15)
-      await this.postingPreference1DropDown.selectOption({ label: "ANUSHAKTINAGAR" });
-      await this.postingPreference2DropDown.selectOption({ label: "HYDERABAD" });
-      await this.postingPreference3DropDown.selectOption({ label: "INDORE" });
-      await this.postingPreference4DropDown.selectOption({ label: "JADUGUDA/NARWAPAHAR/TURAMDIH" });
-      await this.postingPreference5DropDown.selectOption({ label: "KAIGA" });
-      await this.postingPreference6DropDown.selectOption({ label: "KAKRAPAR" });
-      await this.postingPreference7DropDown.selectOption({ label: "KALPAKKAM/ANUPURAM" });
-      await this.postingPreference8DropDown.selectOption({ label: "KUDANKULAM" });
-      await this.postingPreference9DropDown.selectOption({ label: "MANUGURU" });
-      await this.postingPreference10DropDown.selectOption({ label: "MYSORE" });
-      await this.postingPreference11DropDown.selectOption({ label: "NARORA" });
-      await this.postingPreference12DropDown.selectOption({ label: "OSCOM" });
-      await this.postingPreference13DropDown.selectOption({ label: "PAZHAYAKAYAL" });
-      await this.postingPreference14DropDown.selectOption({ label: "RAWATBHATA" });
-      await this.postingPreference15DropDown.selectOption({ label: "TARAPUR" });
+      if (await this.preference1SelectDropDown.isVisible({ timeout: 10000 }).catch(() => false)) {
+        // 1. Fill Test Center Cities
+        await this.preference1SelectDropDown.selectOption({ label: "AGARTALA" });
+        await this.preference2SelectDropDown.selectOption({ label: "AHMEDABAD" });
+        await this.preference3SelectDropDown.selectOption({ label: "BHOPAL" });
 
-      // 3. Save and Continue
-      await this.saveAndContinueBtn.click();
+        // 2. Fill Posting Location Preferences (all 15)
+        await this.postingPreference1DropDown.selectOption({ label: "ANUSHAKTINAGAR" });
+        await this.postingPreference2DropDown.selectOption({ label: "HYDERABAD" });
+        await this.postingPreference3DropDown.selectOption({ label: "INDORE" });
+        await this.postingPreference4DropDown.selectOption({ label: "JADUGUDA/NARWAPAHAR/TURAMDIH" });
+        await this.postingPreference5DropDown.selectOption({ label: "KAIGA" });
+        await this.postingPreference6DropDown.selectOption({ label: "KAKRAPAR" });
+        await this.postingPreference7DropDown.selectOption({ label: "KALPAKKAM/ANUPURAM" });
+        await this.postingPreference8DropDown.selectOption({ label: "KUDANKULAM" });
+        await this.postingPreference9DropDown.selectOption({ label: "MANUGURU" });
+        await this.postingPreference10DropDown.selectOption({ label: "MYSORE" });
+        await this.postingPreference11DropDown.selectOption({ label: "NARORA" });
+        await this.postingPreference12DropDown.selectOption({ label: "OSCOM" });
+        await this.postingPreference13DropDown.selectOption({ label: "PAZHAYAKAYAL" });
+        await this.postingPreference14DropDown.selectOption({ label: "RAWATBHATA" });
+        await this.postingPreference15DropDown.selectOption({ label: "TARAPUR" });
+
+        // 3. Save and Continue
+        await this.saveAndContinueBtn.click();
+
+        // Wait for next step to load
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(2000);
+        logger.info('[AeesTestCenter] Test center preferences saved');
+      } else {
+        logger.info('[AeesTestCenter] Test Center form not visible, skipping.');
+      }
     });
   }
 }

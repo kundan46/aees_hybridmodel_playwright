@@ -15,10 +15,21 @@ export class AeesEligibilityPage extends BasePage {
   async fillEligibility(): Promise<void> {
     await test.step('Fill Eligibility', async () => {
       logger.info('[AeesEligibility] Filling eligibility details');
-      if (await this.radioButtons.first().waitFor({ state: "visible", timeout: 2000 }).then(() => true).catch(() => false)) {
+
+      // Wait for the page to stabilize
+      await this.page.waitForLoadState('networkidle');
+
+      if (await this.radioButtons.first().waitFor({ state: "visible", timeout: 5000 }).then(() => true).catch(() => false)) {
         await this.radioButtons.nth(0).check();
         await this.radioButtons.nth(2).check();
         await this.saveAndContinueBtn.click();
+
+        // Wait for next step to load
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(1000);
+        logger.info('[AeesEligibility] Eligibility saved');
+      } else {
+        logger.info('[AeesEligibility] Eligibility not visible, likely already completed');
       }
     });
   }

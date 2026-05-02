@@ -79,7 +79,14 @@ export class AeesPersonalDetailsPage extends BasePage {
   async fillPersonalDetails(data: any): Promise<void> {
     await test.step('Fill Personal Details', async () => {
       logger.info('[AeesPersonalDetails] Filling personal details');
-      if (await this.sectionHeader.isVisible()) {
+
+      // Wait for the page content to stabilize
+      await this.page.waitForLoadState('networkidle');
+
+      if (await this.sectionHeader.isVisible().catch(() => false)) {
+        // Wait for form elements to be ready
+        await this.titleSelect.waitFor({ state: 'visible', timeout: 10000 });
+
         await this.titleSelect.selectOption(data.title || 'MR');
         await this.firstNameInput.fill(data.firstName || 'Test');
         await this.lastNameInput.fill(data.lastName || 'Engineer');
@@ -114,10 +121,12 @@ export class AeesPersonalDetailsPage extends BasePage {
 
         // Address
         await this.addressLine1Input.fill(data.address || '123 Test Street');
-        await expect(this.stateSelect).toBeEnabled();
+        await expect(this.stateSelect).toBeEnabled({ timeout: 10000 });
         await this.stateSelect.selectOption({ label: data.state || 'BIHAR' });
 
-        await expect(this.districtSelect).toBeEnabled();
+        // Wait for district dropdown to populate after state selection
+        await this.page.waitForTimeout(2000);
+        await expect(this.districtSelect).toBeEnabled({ timeout: 10000 });
         await this.districtSelect.selectOption({ label: data.district || 'PATNA' });
 
         await this.cityInput.fill(data.city || 'Test City');
@@ -126,7 +135,13 @@ export class AeesPersonalDetailsPage extends BasePage {
         await this.privacyCheckbox.click();
 
         await this.saveAndContinueBtn.click();
-        await this.page.waitForTimeout(5000); // Wait for transition
+
+        // Wait for the next step to load (replaced hardcoded 5s with proper wait)
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(2000);
+        logger.info('[AeesPersonalDetails] Personal details saved');
+      } else {
+        logger.info('[AeesPersonalDetails] Section not visible, likely already completed');
       }
     });
   }

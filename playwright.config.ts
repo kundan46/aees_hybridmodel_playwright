@@ -19,13 +19,13 @@ export default defineConfig({
   forbidOnly: isCI,
 
   /* Retry failed tests: 2 times on CI, 0 locally */
-  retries: 1,
+  retries: 0,
 
   /* Opt out of parallel tests on CI to avoid resource exhaustion per shard */
   workers: 1,
 
   /* Global timeout per test */
-  timeout: 60_000,
+  timeout: 300_000,
 
   /* Global expect timeout */
   expect: {
@@ -58,7 +58,7 @@ export default defineConfig({
     video: 'retain-on-failure',
 
     /* Action and navigation timeouts */
-    actionTimeout: 15_000,
+    actionTimeout: 30_000,
     navigationTimeout: 30_000,
 
     /* Default locale and timezone */

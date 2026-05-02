@@ -17,11 +17,23 @@ export class AeesPostSelectionPage extends BasePage {
   async selectPost(postName: string): Promise<void> {
     await test.step(`Select Post: ${postName}`, async () => {
       logger.info(`[AeesPostSelection] Selecting post: ${postName}`);
-      if (await this.postDropdown.first().waitFor({ state: "visible", timeout: 2000 }).then(() => true).catch(() => false)) {
+
+      // Wait for the page to stabilize
+      await this.page.waitForLoadState('networkidle');
+
+      if (await this.postDropdown.first().waitFor({ state: "visible", timeout: 5000 }).then(() => true).catch(() => false)) {
         await this.postDropdown.selectOption({ label: postName });
+        await this.checkbox.waitFor({ state: 'visible', timeout: 5000 });
         await this.checkbox.check();
 
         await this.saveAndContinueBtn.click();
+
+        // Wait for next step to load
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForTimeout(1000);
+        logger.info('[AeesPostSelection] Post selected and saved');
+      } else {
+        logger.info('[AeesPostSelection] Post selection not visible, likely already completed');
       }
     });
   }

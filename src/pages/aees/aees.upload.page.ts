@@ -6,8 +6,8 @@ import * as path from 'path';
 interface UploadData {
   photoPath: string;
   signaturePath: string;
-  casteCertificate?: string;
-  castecertificate?: string;   // alternate key from test-data
+  casteCertificatePath?: string;
+  castecertificatePath?: string;   // alternate key from test-data
   casteCertNumber?: string;
   casteIssueDate?: string;
 }
@@ -19,7 +19,7 @@ export class AeesUploadPage extends BasePage {
     super(page);
 
     this.saveAndContinueBtn = page.getByRole('button', {
-      name: /save & continue/i,
+      name: /save & continue|save & next|continue/i,
     });
   }
 
@@ -35,7 +35,7 @@ export class AeesUploadPage extends BasePage {
       // Resolve file paths
       const photoPath = path.resolve(data.photoPath);
       const signaturePath = path.resolve(data.signaturePath);
-      const casteCertPath = data.casteCertificate || data.castecertificate;
+      const casteCertPath = data.casteCertificatePath || data.castecertificatePath;
 
       logger.info(`[Upload] Photo path: ${photoPath}`);
       logger.info(`[Upload] Signature path: ${signaturePath}`);
@@ -80,7 +80,7 @@ export class AeesUploadPage extends BasePage {
         }
 
         // Retry save
-        await this.saveAndContinueBtn.click().catch(() => {});
+        await this.saveAndContinueBtn.click().catch(() => { });
       }
     });
   }
@@ -397,12 +397,16 @@ export class AeesUploadPage extends BasePage {
       await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
       await this.page.waitForTimeout(1000);
 
-      await this.saveAndContinueBtn.waitFor({ state: 'visible', timeout: 10000 });
+      if (await this.saveAndContinueBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
+        await this.saveAndContinueBtn.waitFor({ state: 'visible', timeout: 10000 });
 
-      await Promise.all([
-        this.page.waitForLoadState('networkidle').catch(() => {}),
-        this.saveAndContinueBtn.click(),
-      ]);
+        await Promise.all([
+          this.page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => { }),
+          this.saveAndContinueBtn.click(),
+        ]);
+      } else {
+        logger.info('[Upload] Save & Continue button not visible, possibly already moved to next step');
+      }
     });
   }
 

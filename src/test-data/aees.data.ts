@@ -47,15 +47,16 @@ export interface AeesEducationData {
 export interface AeesUploadsData {
     photoPath: string;
     signaturePath: string;
-    casteCertificate: string;
-    casteCertNumber: string;
-    casteIssueDate: string;
+    casteCertificatePath?: string;
+    castecertificatePath?: string;   // alternate key from test-data
+    casteCertNumber?: string;
+    casteIssueDate?: string;
 }
 
 
 export const AEES_TEST_DATA = {
     validUser: {
-        email: 'bug92@gmail.com',
+        email: 'bug106@gmail.com',
         password: 'Abcd@1234'
     },
     defaultPersonalDetails: {
@@ -99,9 +100,10 @@ export const AEES_TEST_DATA = {
         yearother: '01/01/2027',
     } as AeesEducationData,
     defaultUploads: {
-        photoPath: 'test-photo.jpg',
-        signaturePath: 'test-signature.jpg',
-        casteCertificate: 'test-caste-certificate.pdf',
+        photoPath: '/test-photo.png',
+        signaturePath: '/test-signature.png',
+        casteCertificatePath: '/test-caste-certificate.pdf',
+        castecertificatePath: '/home/kundan/Pictures/TESTING DATA/certificate.pdf',
         casteCertNumber: '123456789012',
         casteIssueDate: '01-01-2025',
     } as AeesUploadsData,
@@ -112,9 +114,10 @@ export const AEES_TEST_DATA = {
         const ts = Date.now();
         return {
             email: `user_${ts}@testmail.com`,
-            email2: `bug94@gmail.com`,
+            email2: `bug107@gmail.com`,
             password: 'Abcd@1234',
-            mobile: `98${ts.toString().slice(-8)}`
+            mobile: `98${ts.toString().slice(-8)}`,
+
         };
     }
 };

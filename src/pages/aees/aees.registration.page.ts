@@ -4,6 +4,9 @@ import envConfig from '@config/env.config';
 import logger from '@utils/logger';
 
 export class AeesRegistrationPage extends BasePage {
+    register(user: any) {
+        throw new Error('Method not implemented.');
+    }
     readonly newRegistrationBtn: Locator;
     readonly emailInput: Locator;
     readonly confirmEmailInput: Locator;
@@ -45,8 +48,8 @@ export class AeesRegistrationPage extends BasePage {
     async fillRegistrationForm(data: { email: string; email2: string; password: string; mobile: string }): Promise<void> {
         await test.step('Fill Registration Form', async () => {
             await this.emailInput.waitFor({ state: 'visible' });
-            await this.emailInput.fill(data.email2);
-            await this.confirmEmailInput.fill(data.email2);
+            await this.emailInput.fill(data.email);
+            await this.confirmEmailInput.fill(data.email);
             await this.passwordInput.fill(data.password);
             await this.confirmPasswordInput.fill(data.password);
             await this.mobileInput.fill(data.mobile);
